@@ -469,7 +469,7 @@ for (educ in c(3:16)) {
     for (i in 1:20){
     reg_sim <- sim(logregression, 20)
     person_educ <- c(mean(lalonde_data$age), educ, mean(lalonde_data$hisp), mean(lalonde_data$re74), mean(lalonde_data$re75))
-    storage.matrix_results[i, educ-2] <- (1/ (1 + exp(get_result(glm_sim@coef[i, ], person_educ))))
+    storage.matrix_results1[i, educ-2] <- (1/ (1 + exp(get_result(glm_sim@coef[i, ], person_educ))))
     expected_value_result[j, educ-2]<- mean(storage.matrix_results1[, educ-2])
     }
   }
