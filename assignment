@@ -377,13 +377,22 @@ Using the `lalonde` data set, run a logistic regression, modeling treatment stat
 ```{r}
 #creates regression using these different variables, using glm instead of lm because 
 #it is logistic 
-logregression <- glm(treat ~ age + educ + hisp + re74 + re75, data = lalonde)
+logregression <- glm(treat ~ age + educ + hisp + re74 + re75, data = lalonde, family = "binomial")
 summary(logregression)
+summary(logregression)$coef["age", "Estimate"]
+summary(logregression)$coef["educ", "Estimate"]
+confint(logregression)[c("age", "educ"),]
 
 
 ```
 
 Report and interpret regression coefficient and 95% confidence intervals for `age` and `education` here. 
+The regression coefficient for age is 0.01164838, meaning that for every unit increase in age we would expect an increase of  x*1.01165 (exp(0.01165)) in the outcome. 
+The regression coefficient for educ is 0.06922206, meaning that for every unit increase in age we would expect an increase of  x* 0.069 (exp( 0.069)) in the outcome. 
+2.5 %     97.5 %
+age  -0.01538200 0.03852192
+educ -0.03853866 0.17958880
+This means that 95% of our observations for our coefficients will fall between these two values for each age and education. 
 
 
 
